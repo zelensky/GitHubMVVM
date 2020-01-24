@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreData
-import MagicalRecord
 
 class ViewController: UIViewController {
   
@@ -16,7 +15,7 @@ class ViewController: UIViewController {
   @IBOutlet weak var searchField: UITextField!
   @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
   @IBOutlet var viewModel: ResultsViewModel!
-  
+
   private func updateViewInMainQueue() {
     DispatchQueue.main.async { [weak self] in
       self?.tableView.reloadData()

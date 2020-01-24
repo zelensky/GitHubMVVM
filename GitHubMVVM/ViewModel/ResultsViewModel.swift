@@ -16,9 +16,21 @@ enum State {
 class ResultsViewModel: NSObject, ResultsViewModelProtocol {
 
   @IBOutlet weak var networkManager: NetworkManager!
-  
   private var results = [SearchResult]()
   private var state = State.search
+  
+  var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult> = {
+    //https://samwize.com/2014/03/29/implementing-nsfetchedresultscontroller-with-magicalrecord/
+    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "CDSearchResult")
+    let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+    fetchRequest.sortDescriptors = [sortDescriptor]
+    let managedContext = NSManagedObjectContext.mr_default()
+    let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest,
+                                                              managedObjectContext: managedContext,
+                                                              sectionNameKeyPath: nil,
+                                                              cacheName: nil)
+    return fetchedResultsController
+  }()
   
   func numberOfRows() -> Int {
     results.count

@@ -7,8 +7,11 @@
 //
 
 import Foundation
+import CoreData
 
 protocol ResultsViewModelProtocol {
+  
+  var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult> { get }
   
   func numberOfRows() -> Int
   func viewModel(for row: Int) -> ResultViewModelProtocol
