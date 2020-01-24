@@ -14,15 +14,13 @@ class ViewController: UIViewController {
   
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var searchField: UITextField!
+  @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
   @IBOutlet var viewModel: ResultsViewModel!
-  
-  override func viewDidLoad() {
-    super.viewDidLoad()
-  }
   
   private func updateViewInMainQueue() {
     DispatchQueue.main.async { [weak self] in
       self?.tableView.reloadData()
+      self?.activityIndicatorView.stopAnimating()
     }
   }
   
@@ -37,7 +35,7 @@ class ViewController: UIViewController {
         present(alert, animated: true)
         return
     }
-    
+    activityIndicatorView.startAnimating()
     viewModel.setState(.search)
     viewModel.fetch(query: query) { [weak self] in
       self?.updateViewInMainQueue()
@@ -45,6 +43,7 @@ class ViewController: UIViewController {
   }
   
   @IBAction func historyPressed(_ sender: Any) {
+    activityIndicatorView.startAnimating()
     viewModel.setState(.history)
     viewModel.fetch { [weak self] in
       self?.updateViewInMainQueue()
