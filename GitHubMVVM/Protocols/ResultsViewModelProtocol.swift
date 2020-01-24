@@ -9,12 +9,12 @@
 import Foundation
 import CoreData
 
-protocol ResultsViewModelProtocol {
+protocol ResultsViewModelProtocol: class {
   
   var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult> { get }
   
   func numberOfRows() -> Int
-  func viewModel(for row: Int) -> ResultViewModelProtocol
+  func cellViewModel(for row: Int) -> ResultViewModelProtocol
   func setState(_ state: State)
   func fetch(query: String?, complition: @escaping() -> Void)
 

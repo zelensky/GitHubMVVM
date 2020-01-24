@@ -17,11 +17,7 @@ struct ResultViewModel: ResultViewModelProtocol {
   }
   
   func getTitle() -> String {
-    return result.name
+    return "\(result.name) has \(result.starsCount) ⭐️"
   }
-  
-  func getStarsCount() -> String {
-    return result.starsCount
-  }
-    
+
 }

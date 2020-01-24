@@ -14,7 +14,7 @@ enum State {
 }
 
 class ResultsViewModel: NSObject, ResultsViewModelProtocol {
-
+  
   @IBOutlet weak var networkManager: NetworkManager!
   private var results = [SearchResult]()
   private var state = State.search
@@ -36,7 +36,7 @@ class ResultsViewModel: NSObject, ResultsViewModelProtocol {
     results.count
   }
   
-  func viewModel(for row: Int) -> ResultViewModelProtocol {
+  func cellViewModel(for row: Int) -> ResultViewModelProtocol {
     ResultViewModel(result: results[row])
   }
   

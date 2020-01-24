@@ -11,6 +11,5 @@ import Foundation
 protocol ResultViewModelProtocol {
   
   func getTitle() -> String
-  func getStarsCount() -> String 
   
 }
