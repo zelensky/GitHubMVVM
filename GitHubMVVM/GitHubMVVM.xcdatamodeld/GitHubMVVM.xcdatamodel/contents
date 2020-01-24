@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19C57" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CDSearchResult" representedClassName="CDSearchResult" syncable="YES">
+        <attribute name="name" attributeType="String">
+            <userInfo>
+                <entry key="mappedKeyName" value="name"/>
+            </userInfo>
+        </attribute>
+        <attribute name="starsCount" attributeType="String">
+            <userInfo>
+                <entry key="mappedKeyName" value="starsCount"/>
+            </userInfo>
+        </attribute>
+    </entity>
+    <elements>
+        <element name="CDSearchResult" positionX="-54" positionY="-9" width="128" height="73"/>
+    </elements>
+</model>
