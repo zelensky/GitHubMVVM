@@ -8,5 +8,4 @@ target 'GitHubMVVM' do
   # Pods for GitHubMVVM
   pod 'MagicalRecord', :git => 'https://github.com/magicalpanda/MagicalRecord'
   pod 'SwiftLint'
-  
 end

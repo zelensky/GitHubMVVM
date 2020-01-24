@@ -25,4 +25,3 @@ struct ResultViewModel: ResultViewModelProtocol {
   }
     
 }
-

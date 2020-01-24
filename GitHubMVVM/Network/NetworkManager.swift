@@ -33,7 +33,7 @@ class NetworkManager: NSObject {
       return
     }
     
-    session.dataTask(with: request) { (data, response, error) in
+    session.dataTask(with: request) { (data, _, _) in
       complition(data)
     }.resume()
   }

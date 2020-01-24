@@ -26,7 +26,7 @@ class ViewController: UIViewController {
     }
   }
   
-  //MARK: - Actions
+// MARK: Actions
   @IBAction func searchButtonPressed(_ sender: Any) {
     guard let query = searchField.text,
       !query.isEmpty else {
@@ -53,7 +53,7 @@ class ViewController: UIViewController {
   
 }
 
-//MARK: - DataSourse
+// MARK: DataSource
 extension ViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
