@@ -11,13 +11,14 @@ import MagicalRecord
 
 class ResultsViewModel: NSObject, ResultsViewModelProtocol {
   
-  var networkManager: NetworkManager!
+  private let networkManager = NetworkManager()
   private var results = [SearchResult]()
   
   var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult> = {
     let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SearchResult")
-    let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+    let sortDescriptor = NSSortDescriptor(key: "stars", ascending: false)
     fetchRequest.sortDescriptors = [sortDescriptor]
+    fetchRequest.fetchLimit = 30
     let managedContext = NSManagedObjectContext.mr_default()
     let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest,
                                                               managedObjectContext: managedContext,
@@ -26,27 +27,12 @@ class ResultsViewModel: NSObject, ResultsViewModelProtocol {
     return fetchedResultsController
   }()
   
-  override init() {
-    super.init()
-    
-    networkManager = NetworkManager()
-    
-    //    createRecord()
-    try? fetchedResultsController.performFetch()
-  }
-  
-  //Temp
-  func createRecord() {
-    let result = SearchResult.mr_createEntity()
-    NSManagedObjectContext.mr_default().mr_saveToPersistentStoreAndWait()
-  }
-  
   func numberOfSectins() -> Int {
-    1
+    return fetchedResultsController.sections?.count ?? 0
   }
   
   func numberOfRows(in sectin: Int) -> Int {
-    return fetchedResultsController.sections?[0].numberOfObjects ?? 0
+    return fetchedResultsController.sections?[sectin].numberOfObjects ?? 0
   }
   
   func cellViewModel(for indexPath: IndexPath) -> ResultViewModelProtocol? {
@@ -56,10 +42,22 @@ class ResultsViewModel: NSObject, ResultsViewModelProtocol {
     return ResultViewModel(result: searchResult)
   }
   
-  func search(query: String) {
+  func fetch(_ query: String?, complition: @escaping () -> Void) {
     
-    //TODO: - Refactor
-    networkManager.search(query: query) { data in
+    if let query = query {
+      self.search(query: query) { [weak self] in
+        try? self?.fetchedResultsController.performFetch()
+        complition()
+      }
+    } else {
+      try? fetchedResultsController.performFetch()
+      complition()
+    }
+    
+  }
+  
+  private func search(query: String, complition: @escaping () -> Void) {
+    networkManager.search(query: query) { [weak self] data in
       guard let data = data,
         let json = try?
           JSONSerialization.jsonObject(with: data,
@@ -74,12 +72,15 @@ class ResultsViewModel: NSObject, ResultsViewModelProtocol {
            "stars": String($0["stargazers_count"] as? Int ?? 0) ]
       }
       
-      self.importToPersistentStore(results)
+      self?.importToStore(results, complition: {
+        complition()
+      })
     }
     
   }
   
-  func importToPersistentStore(_ arrayOfDicts: [[AnyHashable : Any]] ) {
+  private func importToStore(_ arrayOfDicts: [[AnyHashable: Any]],
+                             complition: @escaping () -> Void) {
     MagicalRecord.save({ managedContext in
       SearchResult.mr_import(from: arrayOfDicts, in: managedContext)
     }) { (success, _) in
@@ -87,9 +88,9 @@ class ResultsViewModel: NSObject, ResultsViewModelProtocol {
         return
       }
       
-      print(success)
+      complition()
     }
-
+    
   }
   
 }

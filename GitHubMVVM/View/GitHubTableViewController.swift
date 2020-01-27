@@ -10,15 +10,13 @@ import UIKit
 import CoreData
 
 class GitHubTableViewController: UITableViewController {
-  
+    
   let searchController = UISearchController(searchResultsController: nil)
-  
   var viewModel: ResultsViewModelProtocol!
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    //TODO: - Refactor to dependency injection
     viewModel = ResultsViewModel()
     setupSearchController()
   }
@@ -42,37 +40,31 @@ class GitHubTableViewController: UITableViewController {
   
   // MARK: - Private funcs
   private func setupSearchController() {
-    searchController.searchResultsUpdater = self
     searchController.obscuresBackgroundDuringPresentation = false
-    
     searchController.searchBar.delegate = self
-    
+    searchController.searchBar.showsSearchResultsButton = true
     navigationItem.searchController = searchController
     definesPresentationContext = true
   }
   
-  
-}
-
-extension GitHubTableViewController: UISearchResultsUpdating {
-  
-  func updateSearchResults(for searchController: UISearchController) {
-    // TODO
+  private func updateWith(_ query: String?) {
+    viewModel.fetch(query) { [weak self] in
+      DispatchQueue.main.async {
+        self?.tableView.reloadData()
+      }
+    }
   }
   
 }
 
-
 extension GitHubTableViewController: UISearchBarDelegate {
   
   func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-    
-    guard let query = searchBar.text,
-      !query.isEmpty else {
-        return
-    }
-    
-    viewModel.search(query: query)
+    updateWith(searchBar.text)
+  }
+  
+  func searchBarResultsListButtonClicked(_ searchBar: UISearchBar) {
+    updateWith(nil)
   }
   
 }

@@ -2,7 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19C57" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="SearchResult" representedClassName="SearchResult" syncable="YES" codeGenerationType="class">
         <attribute name="name" attributeType="String"/>
-        <attribute name="stars" attributeType="String"/>
+        <attribute name="stars" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <elements>
         <element name="SearchResult" positionX="-54" positionY="-9" width="128" height="73"/>

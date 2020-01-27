@@ -19,7 +19,6 @@
 		244C0E1123D709BE00C6BF73 /* ResultViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244C0E1023D709BE00C6BF73 /* ResultViewModelProtocol.swift */; };
 		244C0E1723D7220D00C6BF73 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244C0E1623D7220D00C6BF73 /* NetworkManager.swift */; };
 		2456DBD923DAED9A005E74DC /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 2456DBD823DAED9A005E74DC /* .swiftlint.yml */; };
-		2456DBDB23DEC121005E74DC /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2456DBDA23DEC121005E74DC /* SearchResult.swift */; };
 		24933D9723D85F76007E7597 /* GitHubMVVM.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24933D9523D85F76007E7597 /* GitHubMVVM.xcdatamodeld */; };
 		CDB78FEDA5E819B53A4203DB /* Pods_GitHubMVVM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01B83D9D099769C3E8BE0673 /* Pods_GitHubMVVM.framework */; };
 /* End PBXBuildFile section */
@@ -40,7 +39,6 @@
 		244C0E1023D709BE00C6BF73 /* ResultViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewModelProtocol.swift; sourceTree = "<group>"; };
 		244C0E1623D7220D00C6BF73 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		2456DBD823DAED9A005E74DC /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
-		2456DBDA23DEC121005E74DC /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchResult.swift; path = GitHubMVVM/SearchResult.swift; sourceTree = SOURCE_ROOT; };
 		24933D9623D85F76007E7597 /* GitHubMVVM.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GitHubMVVM.xcdatamodel; sourceTree = "<group>"; };
 		79928EF0AC68BBD362704A18 /* Pods-GitHubMVVM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHubMVVM.debug.xcconfig"; path = "Target Support Files/Pods-GitHubMVVM/Pods-GitHubMVVM.debug.xcconfig"; sourceTree = "<group>"; };
 		9E6C0E5DE0FD593D42300200 /* Pods-GitHubMVVM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHubMVVM.release.xcconfig"; path = "Target Support Files/Pods-GitHubMVVM/Pods-GitHubMVVM.release.xcconfig"; sourceTree = "<group>"; };
@@ -97,7 +95,6 @@
 		244C0E0223D6E56300C6BF73 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				2456DBDA23DEC121005E74DC /* SearchResult.swift */,
 				24933D9523D85F76007E7597 /* GitHubMVVM.xcdatamodeld */,
 			);
 			path = Model;
@@ -277,7 +274,6 @@
 				24933D9723D85F76007E7597 /* GitHubMVVM.xcdatamodeld in Sources */,
 				244C0E1123D709BE00C6BF73 /* ResultViewModelProtocol.swift in Sources */,
 				244C0DF123D6D87300C6BF73 /* SceneDelegate.swift in Sources */,
-				2456DBDB23DEC121005E74DC /* SearchResult.swift in Sources */,
 				244C0E1723D7220D00C6BF73 /* NetworkManager.swift in Sources */,
 				244C0E0C23D7078C00C6BF73 /* ResultViewModel.swift in Sources */,
 			);

@@ -16,6 +16,6 @@ protocol ResultsViewModelProtocol: class {
   func numberOfSectins() -> Int
   func numberOfRows(in sectin: Int) -> Int
   func cellViewModel(for indexPath: IndexPath) -> ResultViewModelProtocol?
-  func search(query: String)
-  
+  func fetch(_ query: String?, complition: @escaping () -> Void)
+
 }

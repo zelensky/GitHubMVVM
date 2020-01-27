@@ -17,12 +17,11 @@ struct ResultViewModel: ResultViewModelProtocol {
   }
 
   func getTitle() -> String? {
-    guard let name = result.name,
-      let stars = result.stars
-    else {
+    guard let name = result.name
+      else {
         return nil
     }
-    return "\(name) has \(stars) ⭐️"
+    return "\(name) has \(result.stars) ⭐️"
   }
-
+  
 }
