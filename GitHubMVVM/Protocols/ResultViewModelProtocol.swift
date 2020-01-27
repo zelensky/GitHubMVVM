@@ -10,6 +10,6 @@ import Foundation
 
 protocol ResultViewModelProtocol {
   
-  func getTitle() -> String
+  func getTitle() -> String?
   
 }

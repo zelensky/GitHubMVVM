@@ -11,11 +11,11 @@ import CoreData
 
 protocol ResultsViewModelProtocol: class {
   
-  var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult> { get }
+//  var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult> { get }
   
-  func numberOfRows() -> Int
-  func cellViewModel(for row: Int) -> ResultViewModelProtocol
-  func setState(_ state: State)
-  func fetch(query: String?, complition: @escaping() -> Void)
-
+  func numberOfSectins() -> Int
+  func numberOfRows(in sectin: Int) -> Int
+  func cellViewModel(for indexPath: IndexPath) -> ResultViewModelProtocol?
+  func search(query: String)
+  
 }

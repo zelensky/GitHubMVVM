@@ -15,9 +15,14 @@ struct ResultViewModel: ResultViewModelProtocol {
   init(result: SearchResult) {
     self.result = result
   }
-  
-  func getTitle() -> String {
-    return "\(result.name) has \(result.starsCount) ⭐️"
+
+  func getTitle() -> String? {
+    guard let name = result.name,
+      let stars = result.stars
+    else {
+        return nil
+    }
+    return "\(name) has \(stars) ⭐️"
   }
 
 }

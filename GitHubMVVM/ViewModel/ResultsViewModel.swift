@@ -9,19 +9,13 @@
 import Foundation
 import MagicalRecord
 
-enum State {
-  case search, history
-}
-
 class ResultsViewModel: NSObject, ResultsViewModelProtocol {
   
-  @IBOutlet weak var networkManager: NetworkManager!
+  var networkManager: NetworkManager!
   private var results = [SearchResult]()
-  private var state = State.search
   
   var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult> = {
-    //https://samwize.com/2014/03/29/implementing-nsfetchedresultscontroller-with-magicalrecord/
-    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "CDSearchResult")
+    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SearchResult")
     let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
     fetchRequest.sortDescriptors = [sortDescriptor]
     let managedContext = NSManagedObjectContext.mr_default()
@@ -32,59 +26,70 @@ class ResultsViewModel: NSObject, ResultsViewModelProtocol {
     return fetchedResultsController
   }()
   
-  func numberOfRows() -> Int {
-    results.count
+  override init() {
+    super.init()
+    
+    networkManager = NetworkManager()
+    
+    //    createRecord()
+    try? fetchedResultsController.performFetch()
   }
   
-  func cellViewModel(for row: Int) -> ResultViewModelProtocol {
-    ResultViewModel(result: results[row])
+  //Temp
+  func createRecord() {
+    let result = SearchResult.mr_createEntity()
+    NSManagedObjectContext.mr_default().mr_saveToPersistentStoreAndWait()
   }
   
-  func setState(_ state: State) {
-    self.state = state
+  func numberOfSectins() -> Int {
+    1
   }
   
-  func fetch(query: String? = nil, complition: @escaping () -> Void) {
-    switch state {
-    case .history:
-      guard let history = CDSearchResult.mr_findAll() as? [CDSearchResult] else {
+  func numberOfRows(in sectin: Int) -> Int {
+    return fetchedResultsController.sections?[0].numberOfObjects ?? 0
+  }
+  
+  func cellViewModel(for indexPath: IndexPath) -> ResultViewModelProtocol? {
+    guard let searchResult = fetchedResultsController.object(at: indexPath) as? SearchResult else {
+      return nil
+    }
+    return ResultViewModel(result: searchResult)
+  }
+  
+  func search(query: String) {
+    
+    //TODO: - Refactor
+    networkManager.search(query: query) { data in
+      guard let data = data,
+        let json = try?
+          JSONSerialization.jsonObject(with: data,
+                                       options: .fragmentsAllowed) as? [String: Any],
+        let allResults = json["items"] as? [[String: Any]] else {
+          return
+      }
+      
+      let results = allResults
+        .map {
+          ["name": $0["name"] as? String ?? "",
+           "stars": String($0["stargazers_count"] as? Int ?? 0) ]
+      }
+      
+      self.importToPersistentStore(results)
+    }
+    
+  }
+  
+  func importToPersistentStore(_ arrayOfDicts: [[AnyHashable : Any]] ) {
+    MagicalRecord.save({ managedContext in
+      SearchResult.mr_import(from: arrayOfDicts, in: managedContext)
+    }) { (success, _) in
+      guard success else {
         return
       }
       
-      self.results = history
-        .compactMap { SearchResult($0) }
-      complition()
-      
-    case .search:
-      guard let query = query else {
-        return
-      }
-      let decoder = JSONDecoder()
-      
-      networkManager.searchRepositories(query: query) { data in
-        guard let data = data,
-          let results = try? decoder.decode(SearchResultResponse.self, from: data) else {
-            return
-        }
-        self.results = results.items
-        self.importToCoreData(results.items)
-        complition()
-      }
-      
+      print(success)
     }
-  }
-  
-  func importToCoreData(_ serchResults: [SearchResult]) {
-    //TODO: - Some problems with array importing
-    //fix it in future
-    let toImport = serchResults
-      .map { ["name": $0.name,
-              "starsCount": $0.starsCount] }
-    for result in toImport {
-      MagicalRecord.save({ managedContext in
-        CDSearchResult.mr_import(from: result, in: managedContext)
-      })
-    }
+
   }
   
 }

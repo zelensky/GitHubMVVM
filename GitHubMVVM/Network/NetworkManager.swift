@@ -14,6 +14,8 @@ class NetworkManager: NSObject {
   private let httpMethod = "GET"
   private var session: URLSession
   
+  
+  
   override init () {
     self.session = URLSession(configuration: URLSessionConfiguration.default)
     super.init()
@@ -28,7 +30,7 @@ class NetworkManager: NSObject {
     return request
   }
   
-  public func searchRepositories(query: String, complition: @escaping (Data?) -> Void) {
+  public func search(query: String, complition: @escaping (Data?) -> Void) {
     guard let request = buildRequest(query: query) else {
       return
     }

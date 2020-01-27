@@ -10,27 +10,16 @@
         <scene sceneID="7HP-cU-eFk">
             <objects>
                 <tableViewController id="WRb-Ea-0ai" customClass="GitHubTableViewController" customModule="GitHubMVVM" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="BNS-fB-rxo">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="BNS-fB-rxo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" id="YRb-8k-4sD">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <textInputTraits key="textInputTraits"/>
-                            <connections>
-                                <outlet property="delegate" destination="WRb-Ea-0ai" id="LCz-PI-AgD"/>
-                            </connections>
-                        </searchBar>
                         <connections>
                             <outlet property="dataSource" destination="WRb-Ea-0ai" id="lOx-xo-pui"/>
                             <outlet property="delegate" destination="WRb-Ea-0ai" id="0aN-OP-kHu"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="aNA-Fj-Tu6"/>
-                    <connections>
-                        <outlet property="searchBar" destination="YRb-8k-4sD" id="Zlc-S7-LCr"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ix1-0E-BjQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
