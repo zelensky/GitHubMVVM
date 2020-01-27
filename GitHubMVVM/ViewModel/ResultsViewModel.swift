@@ -46,6 +46,8 @@ class ResultsViewModel: NSObject, ResultsViewModelProtocol {
     
     if let query = query {
       self.search(query: query) { [weak self] in
+
+        //refactor here
         try? self?.fetchedResultsController.performFetch()
         complition()
       }
@@ -57,6 +59,7 @@ class ResultsViewModel: NSObject, ResultsViewModelProtocol {
   }
   
   private func search(query: String, complition: @escaping () -> Void) {
+    //refactor here
     networkManager.search(query: query) { [weak self] data in
       guard let data = data,
         let json = try?
