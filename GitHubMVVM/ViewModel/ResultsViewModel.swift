@@ -9,13 +9,13 @@
 import Foundation
 import MagicalRecord
 
-class ResultsViewModel: NSObject, ResultsViewModelProtocol {
+class ResultsViewModel<M>: NSObject, ResultsViewModelProtocol {
     
   private let networkManager = NetworkManager()
   private var results = [SearchResult]()
   
   var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult> = {
-    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SearchResult")
+    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "\(M.self)")
     let sortDescriptor = NSSortDescriptor(key: "stars", ascending: false)
     fetchRequest.sortDescriptors = [sortDescriptor]
     fetchRequest.fetchLimit = 30
@@ -70,13 +70,13 @@ class ResultsViewModel: NSObject, ResultsViewModelProtocol {
         let allResults = json["items"] as? [[String: Any]] else {
           return
       }
-      
+
       let results = allResults
         .map {
           ["name": $0["name"] as? String ?? "",
            "stars": String($0["stargazers_count"] as? Int ?? 0) ]
       }
-      
+
       self?.importToStore(results, complition: {
         complition()
       })

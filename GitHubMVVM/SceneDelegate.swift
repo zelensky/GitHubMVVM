@@ -15,12 +15,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
     if let windowScene = scene as? UIWindowScene {
       let window = UIWindow(windowScene: windowScene)
-      let gitHubVC = GitHubTableViewController()
-      let navigationVC = UINavigationController(rootViewController: gitHubVC)
+      let searchVC = SearchViewController<UITableViewCell, SearchResult>()
+      let navigationVC = UINavigationController(rootViewController: searchVC)
       window.rootViewController = navigationVC
       self.window = window
       window.makeKeyAndVisible()
     }
+    
   }
   
   func sceneDidDisconnect(_ scene: UIScene) {

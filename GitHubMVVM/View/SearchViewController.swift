@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  SearchViewController.swift
 //  GitHubMVVM
 //
 //  Created by Dmytro Zelenskyi on 21.01.2020.
@@ -9,15 +9,15 @@
 import UIKit
 import CoreData
 
-class GitHubTableViewController: UITableViewController {
-    
-  let searchController = UISearchController(searchResultsController: nil)
-  var viewModel: ResultsViewModelProtocol!
+class SearchViewController<C: UITableViewCell, M: NSManagedObject>: UITableViewController, UISearchBarDelegate {
+  
+  private var viewModel = ResultsViewModel<M>()
+  private var searchController: UISearchController!
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    viewModel = ResultsViewModel()
+    searchController = UISearchController(searchResultsController: nil)
     setupSearchController()
   }
   
@@ -31,11 +31,13 @@ class GitHubTableViewController: UITableViewController {
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    return {
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell") else {
       let cell = UITableViewCell()
       cell.textLabel?.text = viewModel.cellViewModel(for: indexPath)?.getTitle()
       return cell
-      }()
+    }
+    cell.textLabel?.text = viewModel.cellViewModel(for: indexPath)?.getTitle()
+    return cell
   }
   
   // MARK: - Private funcs
@@ -54,10 +56,6 @@ class GitHubTableViewController: UITableViewController {
       }
     }
   }
-  
-}
-
-extension GitHubTableViewController: UISearchBarDelegate {
   
   func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
     updateWith(searchBar.text)

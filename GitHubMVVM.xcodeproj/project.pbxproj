@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		244C0DEF23D6D87300C6BF73 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244C0DEE23D6D87300C6BF73 /* AppDelegate.swift */; };
 		244C0DF123D6D87300C6BF73 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244C0DF023D6D87300C6BF73 /* SceneDelegate.swift */; };
-		244C0DF323D6D87300C6BF73 /* GitHubTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244C0DF223D6D87300C6BF73 /* GitHubTableViewController.swift */; };
+		244C0DF323D6D87300C6BF73 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244C0DF223D6D87300C6BF73 /* SearchViewController.swift */; };
 		244C0DF823D6D87500C6BF73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 244C0DF723D6D87500C6BF73 /* Assets.xcassets */; };
 		244C0DFB23D6D87500C6BF73 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 244C0DF923D6D87500C6BF73 /* LaunchScreen.storyboard */; };
 		244C0E0723D6E59D00C6BF73 /* ResultsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244C0E0623D6E59D00C6BF73 /* ResultsViewModel.swift */; };
@@ -28,7 +28,7 @@
 		244C0DEB23D6D87300C6BF73 /* GitHubMVVM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubMVVM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		244C0DEE23D6D87300C6BF73 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		244C0DF023D6D87300C6BF73 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		244C0DF223D6D87300C6BF73 /* GitHubTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubTableViewController.swift; sourceTree = "<group>"; };
+		244C0DF223D6D87300C6BF73 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		244C0DF723D6D87500C6BF73 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		244C0DFA23D6D87500C6BF73 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		244C0DFC23D6D87500C6BF73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -84,11 +84,11 @@
 				244C0E0323D6E56D00C6BF73 /* ViewModel */,
 				244C0E0D23D707A800C6BF73 /* Protocols */,
 				244C0DEE23D6D87300C6BF73 /* AppDelegate.swift */,
-				244C0DF723D6D87500C6BF73 /* Assets.xcassets */,
 				244C0DF023D6D87300C6BF73 /* SceneDelegate.swift */,
-				244C0DF923D6D87500C6BF73 /* LaunchScreen.storyboard */,
 				244C0DFC23D6D87500C6BF73 /* Info.plist */,
+				244C0DF723D6D87500C6BF73 /* Assets.xcassets */,
 				2456DBDC23E0475A005E74DC /* Main.storyboard */,
+				244C0DF923D6D87500C6BF73 /* LaunchScreen.storyboard */,
 			);
 			path = GitHubMVVM;
 			sourceTree = "<group>";
@@ -113,7 +113,7 @@
 		244C0E0A23D7021500C6BF73 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				244C0DF223D6D87300C6BF73 /* GitHubTableViewController.swift */,
+				244C0DF223D6D87300C6BF73 /* SearchViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -287,7 +287,7 @@
 			files = (
 				244C0E0723D6E59D00C6BF73 /* ResultsViewModel.swift in Sources */,
 				244C0E0F23D707BD00C6BF73 /* ResultsViewModelProtocol.swift in Sources */,
-				244C0DF323D6D87300C6BF73 /* GitHubTableViewController.swift in Sources */,
+				244C0DF323D6D87300C6BF73 /* SearchViewController.swift in Sources */,
 				244C0DEF23D6D87300C6BF73 /* AppDelegate.swift in Sources */,
 				24933D9723D85F76007E7597 /* GitHubMVVM.xcdatamodeld in Sources */,
 				244C0E1123D709BE00C6BF73 /* ResultViewModelProtocol.swift in Sources */,
