@@ -14,8 +14,6 @@ class NetworkManager: NSObject {
   private let httpMethod = "GET"
   private var session: URLSession
   
-  
-  
   override init () {
     self.session = URLSession(configuration: URLSessionConfiguration.default)
     super.init()
