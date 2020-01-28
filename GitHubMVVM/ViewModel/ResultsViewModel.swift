@@ -10,7 +10,7 @@ import Foundation
 import MagicalRecord
 
 class ResultsViewModel: NSObject, ResultsViewModelProtocol {
-  
+    
   private let networkManager = NetworkManager()
   private var results = [SearchResult]()
   
@@ -27,6 +27,7 @@ class ResultsViewModel: NSObject, ResultsViewModelProtocol {
     return fetchedResultsController
   }()
   
+  // MARK: Protocol
   func numberOfSectins() -> Int {
     return fetchedResultsController.sections?.count ?? 0
   }
@@ -58,6 +59,7 @@ class ResultsViewModel: NSObject, ResultsViewModelProtocol {
     
   }
   
+  // MARK: Private funcs
   private func search(query: String, complition: @escaping () -> Void) {
     //refactor here
     networkManager.search(query: query) { [weak self] data in
