@@ -11,8 +11,6 @@ import CoreData
 
 protocol ResultsViewModelProtocol: class {
   
-//  var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult> { get }
-  
   func numberOfSectins() -> Int
   func numberOfRows(in sectin: Int) -> Int
   func cellViewModel(for indexPath: IndexPath) -> ResultViewModelProtocol?

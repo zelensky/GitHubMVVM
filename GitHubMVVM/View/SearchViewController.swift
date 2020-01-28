@@ -31,7 +31,7 @@ class SearchViewController<C: UITableViewCell, M: NSManagedObject>: UITableViewC
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell") else {
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? C else {
       let cell = UITableViewCell()
       cell.textLabel?.text = viewModel.cellViewModel(for: indexPath)?.getTitle()
       return cell
