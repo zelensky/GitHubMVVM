@@ -17,11 +17,22 @@
 		244C0E0F23D707BD00C6BF73 /* SearchViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244C0E0E23D707BD00C6BF73 /* SearchViewModelProtocol.swift */; };
 		244C0E1123D709BE00C6BF73 /* ResultViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244C0E1023D709BE00C6BF73 /* ResultViewModelProtocol.swift */; };
 		244C0E1723D7220D00C6BF73 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244C0E1623D7220D00C6BF73 /* NetworkManager.swift */; };
+		244C3B6D23E1A12F00AD1993 /* GitHubMVVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244C3B6C23E1A12F00AD1993 /* GitHubMVVMTests.swift */; };
 		2456DBD923DAED9A005E74DC /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 2456DBD823DAED9A005E74DC /* .swiftlint.yml */; };
 		2456DBDD23E0475A005E74DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2456DBDC23E0475A005E74DC /* Main.storyboard */; };
 		24933D9723D85F76007E7597 /* Search.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24933D9523D85F76007E7597 /* Search.xcdatamodeld */; };
 		CDB78FEDA5E819B53A4203DB /* Pods_GitHubMVVM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01B83D9D099769C3E8BE0673 /* Pods_GitHubMVVM.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		244C3B6F23E1A12F00AD1993 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 244C0DE323D6D87300C6BF73 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 244C0DEA23D6D87300C6BF73;
+			remoteInfo = GitHubMVVM;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		01B83D9D099769C3E8BE0673 /* Pods_GitHubMVVM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GitHubMVVM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -37,6 +48,9 @@
 		244C0E0E23D707BD00C6BF73 /* SearchViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModelProtocol.swift; sourceTree = "<group>"; };
 		244C0E1023D709BE00C6BF73 /* ResultViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewModelProtocol.swift; sourceTree = "<group>"; };
 		244C0E1623D7220D00C6BF73 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		244C3B6A23E1A12F00AD1993 /* GitHubMVVMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GitHubMVVMTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		244C3B6C23E1A12F00AD1993 /* GitHubMVVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubMVVMTests.swift; sourceTree = "<group>"; };
+		244C3B6E23E1A12F00AD1993 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2456DBD823DAED9A005E74DC /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		2456DBDC23E0475A005E74DC /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		24933D9623D85F76007E7597 /* GitHubMVVM.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GitHubMVVM.xcdatamodel; sourceTree = "<group>"; };
@@ -53,6 +67,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		244C3B6723E1A12F00AD1993 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -61,6 +82,7 @@
 			children = (
 				2456DBD823DAED9A005E74DC /* .swiftlint.yml */,
 				244C0DED23D6D87300C6BF73 /* GitHubMVVM */,
+				244C3B6B23E1A12F00AD1993 /* GitHubMVVMTests */,
 				244C0DEC23D6D87300C6BF73 /* Products */,
 				9044B1B9837D1F9A1081868F /* Pods */,
 				F4646D8EC43C4B98B91AD4DF /* Frameworks */,
@@ -71,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				244C0DEB23D6D87300C6BF73 /* GitHubMVVM.app */,
+				244C3B6A23E1A12F00AD1993 /* GitHubMVVMTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -83,12 +106,7 @@
 				244C0E0A23D7021500C6BF73 /* View */,
 				244C0E0323D6E56D00C6BF73 /* ViewModel */,
 				244C0E0D23D707A800C6BF73 /* Protocols */,
-				244C0DEE23D6D87300C6BF73 /* AppDelegate.swift */,
-				244C0DF023D6D87300C6BF73 /* SceneDelegate.swift */,
-				244C0DFC23D6D87500C6BF73 /* Info.plist */,
-				244C0DF723D6D87500C6BF73 /* Assets.xcassets */,
-				2456DBDC23E0475A005E74DC /* Main.storyboard */,
-				244C0DF923D6D87500C6BF73 /* LaunchScreen.storyboard */,
+				244C3B7423E1AEA100AD1993 /* SupportingFiles */,
 			);
 			path = GitHubMVVM;
 			sourceTree = "<group>";
@@ -135,6 +153,28 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		244C3B6B23E1A12F00AD1993 /* GitHubMVVMTests */ = {
+			isa = PBXGroup;
+			children = (
+				244C3B6C23E1A12F00AD1993 /* GitHubMVVMTests.swift */,
+				244C3B6E23E1A12F00AD1993 /* Info.plist */,
+			);
+			path = GitHubMVVMTests;
+			sourceTree = "<group>";
+		};
+		244C3B7423E1AEA100AD1993 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				244C0DEE23D6D87300C6BF73 /* AppDelegate.swift */,
+				244C0DF023D6D87300C6BF73 /* SceneDelegate.swift */,
+				244C0DFC23D6D87500C6BF73 /* Info.plist */,
+				244C0DF723D6D87500C6BF73 /* Assets.xcassets */,
+				2456DBDC23E0475A005E74DC /* Main.storyboard */,
+				244C0DF923D6D87500C6BF73 /* LaunchScreen.storyboard */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
 		9044B1B9837D1F9A1081868F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -175,6 +215,24 @@
 			productReference = 244C0DEB23D6D87300C6BF73 /* GitHubMVVM.app */;
 			productType = "com.apple.product-type.application";
 		};
+		244C3B6923E1A12F00AD1993 /* GitHubMVVMTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 244C3B7323E1A12F00AD1993 /* Build configuration list for PBXNativeTarget "GitHubMVVMTests" */;
+			buildPhases = (
+				244C3B6623E1A12F00AD1993 /* Sources */,
+				244C3B6723E1A12F00AD1993 /* Frameworks */,
+				244C3B6823E1A12F00AD1993 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				244C3B7023E1A12F00AD1993 /* PBXTargetDependency */,
+			);
+			name = GitHubMVVMTests;
+			productName = GitHubMVVMTests;
+			productReference = 244C3B6A23E1A12F00AD1993 /* GitHubMVVMTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -187,6 +245,10 @@
 				TargetAttributes = {
 					244C0DEA23D6D87300C6BF73 = {
 						CreatedOnToolsVersion = 11.3.1;
+					};
+					244C3B6923E1A12F00AD1993 = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = 244C0DEA23D6D87300C6BF73;
 					};
 				};
 			};
@@ -204,6 +266,7 @@
 			projectRoot = "";
 			targets = (
 				244C0DEA23D6D87300C6BF73 /* GitHubMVVM */,
+				244C3B6923E1A12F00AD1993 /* GitHubMVVMTests */,
 			);
 		};
 /* End PBXProject section */
@@ -217,6 +280,13 @@
 				244C0DFB23D6D87500C6BF73 /* LaunchScreen.storyboard in Resources */,
 				244C0DF823D6D87500C6BF73 /* Assets.xcassets in Resources */,
 				2456DBDD23E0475A005E74DC /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		244C3B6823E1A12F00AD1993 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,7 +367,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		244C3B6623E1A12F00AD1993 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				244C3B6D23E1A12F00AD1993 /* GitHubMVVMTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		244C3B7023E1A12F00AD1993 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 244C0DEA23D6D87300C6BF73 /* GitHubMVVM */;
+			targetProxy = 244C3B6F23E1A12F00AD1993 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		244C0DF923D6D87500C6BF73 /* LaunchScreen.storyboard */ = {
@@ -431,7 +517,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = GitHubMVVM/Info.plist;
+				INFOPLIST_FILE = GitHubMVVM/SupportingFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -449,7 +535,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = GitHubMVVM/Info.plist;
+				INFOPLIST_FILE = GitHubMVVM/SupportingFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -458,6 +544,44 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		244C3B7123E1A12F00AD1993 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = GitHubMVVMTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "-.GitHubMVVMTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GitHubMVVM.app/GitHubMVVM";
+			};
+			name = Debug;
+		};
+		244C3B7223E1A12F00AD1993 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = GitHubMVVMTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "-.GitHubMVVMTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GitHubMVVM.app/GitHubMVVM";
 			};
 			name = Release;
 		};
@@ -478,6 +602,15 @@
 			buildConfigurations = (
 				244C0E0023D6D87500C6BF73 /* Debug */,
 				244C0E0123D6D87500C6BF73 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		244C3B7323E1A12F00AD1993 /* Build configuration list for PBXNativeTarget "GitHubMVVMTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				244C3B7123E1A12F00AD1993 /* Debug */,
+				244C3B7223E1A12F00AD1993 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

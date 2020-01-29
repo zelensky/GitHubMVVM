@@ -54,7 +54,7 @@ class SearchViewController<C: UITableViewCell, M: NSManagedObject>: UITableViewC
     definesPresentationContext = true
   }
   
-  private func updateWith(_ query: String?) {
+  private func updateWith(_ query: String? = nil) {
     viewModel.fetch(query) { [weak self] in
       DispatchQueue.main.async {
         self?.tableView.reloadData()
@@ -62,12 +62,13 @@ class SearchViewController<C: UITableViewCell, M: NSManagedObject>: UITableViewC
     }
   }
   
+  // MARK: - SearchBarDelegate
   func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
     updateWith(searchBar.text)
   }
   
   func searchBarResultsListButtonClicked(_ searchBar: UISearchBar) {
-    updateWith(nil)
+    updateWith()
   }
   
 }

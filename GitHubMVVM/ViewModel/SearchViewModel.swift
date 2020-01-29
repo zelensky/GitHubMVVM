@@ -13,7 +13,7 @@ class SearchViewModel<M>: NSObject, SearchViewModelProtocol {
     
   private let networkManager = NetworkManager()
   private var results = [CDResult]()
-  
+    
   var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult> = {
     let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "\(M.self)")
     let sortDescriptor = NSSortDescriptor(key: "stars", ascending: false)
