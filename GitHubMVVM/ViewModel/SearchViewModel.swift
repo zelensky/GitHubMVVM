@@ -1,5 +1,5 @@
 //
-//  ViewModel.swift
+//  SearchViewModel.swift
 //  GitHubMVVM
 //
 //  Created by Dmytro Zelenskyi on 21.01.2020.
@@ -9,10 +9,10 @@
 import Foundation
 import MagicalRecord
 
-class ResultsViewModel<M>: NSObject, ResultsViewModelProtocol {
+class SearchViewModel<M>: NSObject, SearchViewModelProtocol {
     
   private let networkManager = NetworkManager()
-  private var results = [SearchResult]()
+  private var results = [CDResult]()
   
   var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult> = {
     let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "\(M.self)")
@@ -37,10 +37,10 @@ class ResultsViewModel<M>: NSObject, ResultsViewModelProtocol {
   }
   
   func cellViewModel(for indexPath: IndexPath) -> ResultViewModelProtocol? {
-    guard let searchResult = fetchedResultsController.object(at: indexPath) as? SearchResult else {
+    guard let result = fetchedResultsController.object(at: indexPath) as? CDResult else {
       return nil
     }
-    return ResultViewModel(result: searchResult)
+    return ResultViewModel(result: result)
   }
   
   func fetch(_ query: String?, complition: @escaping () -> Void) {
@@ -87,7 +87,7 @@ class ResultsViewModel<M>: NSObject, ResultsViewModelProtocol {
   private func importToStore(_ arrayOfDicts: [[AnyHashable: Any]],
                              complition: @escaping () -> Void) {
     MagicalRecord.save({ managedContext in
-      SearchResult.mr_import(from: arrayOfDicts, in: managedContext)
+      CDResult.mr_import(from: arrayOfDicts, in: managedContext)
     }) { (success, _) in
       guard success else {
         return

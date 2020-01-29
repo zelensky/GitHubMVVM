@@ -11,13 +11,13 @@ import CoreData
 
 class SearchViewController<C: UITableViewCell, M: NSManagedObject>: UITableViewController, UISearchBarDelegate {
   
-  private var viewModel = ResultsViewModel<M>()
+  private var viewModel = SearchViewModel<M>()
   private var searchController: UISearchController!
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    searchController = UISearchController(searchResultsController: nil)
+    setupTableView()
     setupSearchController()
   }
   
@@ -31,17 +31,22 @@ class SearchViewController<C: UITableViewCell, M: NSManagedObject>: UITableViewC
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? C else {
-      let cell = UITableViewCell()
-      cell.textLabel?.text = viewModel.cellViewModel(for: indexPath)?.getTitle()
-      return cell
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(C.self)") as? C,
+      let cellViewModel = viewModel.cellViewModel(for: indexPath) else {
+        return UITableViewCell()
     }
-    cell.textLabel?.text = viewModel.cellViewModel(for: indexPath)?.getTitle()
+    
+    cell.textLabel?.text = cellViewModel.title()
     return cell
   }
   
   // MARK: - Private funcs
+  private func setupTableView() {
+    tableView.register(C.self, forCellReuseIdentifier: "\(C.self)")
+  }
+  
   private func setupSearchController() {
+    searchController = UISearchController(searchResultsController: nil)
     searchController.obscuresBackgroundDuringPresentation = false
     searchController.searchBar.delegate = self
     searchController.searchBar.showsSearchResultsButton = true

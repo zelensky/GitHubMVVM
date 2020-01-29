@@ -12,14 +12,14 @@
 		244C0DF323D6D87300C6BF73 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244C0DF223D6D87300C6BF73 /* SearchViewController.swift */; };
 		244C0DF823D6D87500C6BF73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 244C0DF723D6D87500C6BF73 /* Assets.xcassets */; };
 		244C0DFB23D6D87500C6BF73 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 244C0DF923D6D87500C6BF73 /* LaunchScreen.storyboard */; };
-		244C0E0723D6E59D00C6BF73 /* ResultsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244C0E0623D6E59D00C6BF73 /* ResultsViewModel.swift */; };
+		244C0E0723D6E59D00C6BF73 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244C0E0623D6E59D00C6BF73 /* SearchViewModel.swift */; };
 		244C0E0C23D7078C00C6BF73 /* ResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244C0E0B23D7078C00C6BF73 /* ResultViewModel.swift */; };
-		244C0E0F23D707BD00C6BF73 /* ResultsViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244C0E0E23D707BD00C6BF73 /* ResultsViewModelProtocol.swift */; };
+		244C0E0F23D707BD00C6BF73 /* SearchViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244C0E0E23D707BD00C6BF73 /* SearchViewModelProtocol.swift */; };
 		244C0E1123D709BE00C6BF73 /* ResultViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244C0E1023D709BE00C6BF73 /* ResultViewModelProtocol.swift */; };
 		244C0E1723D7220D00C6BF73 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244C0E1623D7220D00C6BF73 /* NetworkManager.swift */; };
 		2456DBD923DAED9A005E74DC /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 2456DBD823DAED9A005E74DC /* .swiftlint.yml */; };
 		2456DBDD23E0475A005E74DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2456DBDC23E0475A005E74DC /* Main.storyboard */; };
-		24933D9723D85F76007E7597 /* GitHubMVVM.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24933D9523D85F76007E7597 /* GitHubMVVM.xcdatamodeld */; };
+		24933D9723D85F76007E7597 /* Search.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24933D9523D85F76007E7597 /* Search.xcdatamodeld */; };
 		CDB78FEDA5E819B53A4203DB /* Pods_GitHubMVVM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01B83D9D099769C3E8BE0673 /* Pods_GitHubMVVM.framework */; };
 /* End PBXBuildFile section */
 
@@ -32,9 +32,9 @@
 		244C0DF723D6D87500C6BF73 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		244C0DFA23D6D87500C6BF73 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		244C0DFC23D6D87500C6BF73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		244C0E0623D6E59D00C6BF73 /* ResultsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewModel.swift; sourceTree = "<group>"; };
+		244C0E0623D6E59D00C6BF73 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		244C0E0B23D7078C00C6BF73 /* ResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewModel.swift; sourceTree = "<group>"; };
-		244C0E0E23D707BD00C6BF73 /* ResultsViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewModelProtocol.swift; sourceTree = "<group>"; };
+		244C0E0E23D707BD00C6BF73 /* SearchViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModelProtocol.swift; sourceTree = "<group>"; };
 		244C0E1023D709BE00C6BF73 /* ResultViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewModelProtocol.swift; sourceTree = "<group>"; };
 		244C0E1623D7220D00C6BF73 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		2456DBD823DAED9A005E74DC /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
@@ -96,7 +96,7 @@
 		244C0E0223D6E56300C6BF73 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				24933D9523D85F76007E7597 /* GitHubMVVM.xcdatamodeld */,
+				24933D9523D85F76007E7597 /* Search.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -104,7 +104,7 @@
 		244C0E0323D6E56D00C6BF73 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				244C0E0623D6E59D00C6BF73 /* ResultsViewModel.swift */,
+				244C0E0623D6E59D00C6BF73 /* SearchViewModel.swift */,
 				244C0E0B23D7078C00C6BF73 /* ResultViewModel.swift */,
 			);
 			path = ViewModel;
@@ -121,7 +121,7 @@
 		244C0E0D23D707A800C6BF73 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				244C0E0E23D707BD00C6BF73 /* ResultsViewModelProtocol.swift */,
+				244C0E0E23D707BD00C6BF73 /* SearchViewModelProtocol.swift */,
 				244C0E1023D709BE00C6BF73 /* ResultViewModelProtocol.swift */,
 			);
 			path = Protocols;
@@ -285,11 +285,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				244C0E0723D6E59D00C6BF73 /* ResultsViewModel.swift in Sources */,
-				244C0E0F23D707BD00C6BF73 /* ResultsViewModelProtocol.swift in Sources */,
+				244C0E0723D6E59D00C6BF73 /* SearchViewModel.swift in Sources */,
+				244C0E0F23D707BD00C6BF73 /* SearchViewModelProtocol.swift in Sources */,
 				244C0DF323D6D87300C6BF73 /* SearchViewController.swift in Sources */,
 				244C0DEF23D6D87300C6BF73 /* AppDelegate.swift in Sources */,
-				24933D9723D85F76007E7597 /* GitHubMVVM.xcdatamodeld in Sources */,
+				24933D9723D85F76007E7597 /* Search.xcdatamodeld in Sources */,
 				244C0E1123D709BE00C6BF73 /* ResultViewModelProtocol.swift in Sources */,
 				244C0DF123D6D87300C6BF73 /* SceneDelegate.swift in Sources */,
 				244C0E1723D7220D00C6BF73 /* NetworkManager.swift in Sources */,
@@ -485,14 +485,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		24933D9523D85F76007E7597 /* GitHubMVVM.xcdatamodeld */ = {
+		24933D9523D85F76007E7597 /* Search.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				24933D9623D85F76007E7597 /* GitHubMVVM.xcdatamodel */,
 			);
 			currentVersion = 24933D9623D85F76007E7597 /* GitHubMVVM.xcdatamodel */;
-			name = GitHubMVVM.xcdatamodeld;
-			path = ../GitHubMVVM.xcdatamodeld;
+			name = Search.xcdatamodeld;
+			path = ../Search.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

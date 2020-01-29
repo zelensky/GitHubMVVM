@@ -10,17 +10,17 @@ import Foundation
 
 struct ResultViewModel: ResultViewModelProtocol {
   
-  private let result: SearchResult
+  private let result: CDResult
   
-  init(result: SearchResult) {
+  init(result: CDResult) {
     self.result = result
   }
 
-  func getTitle() -> String? {
-    guard let name = result.name
-      else {
+  func title() -> String? {
+    guard let name = result.name else {
         return nil
     }
+    
     return "\(name) has \(result.stars) ⭐️"
   }
   
