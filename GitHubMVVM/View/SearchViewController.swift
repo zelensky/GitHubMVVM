@@ -31,7 +31,7 @@ class SearchViewController<C: UITableViewCell, M: NSManagedObject>: UITableViewC
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(C.self)") as? C,
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: C.self)) as? C,
       let cellViewModel = viewModel.cellViewModel(for: indexPath) else {
         return UITableViewCell()
     }
@@ -42,7 +42,7 @@ class SearchViewController<C: UITableViewCell, M: NSManagedObject>: UITableViewC
   
   // MARK: - Private funcs
   private func setupTableView() {
-    tableView.register(C.self, forCellReuseIdentifier: "\(C.self)")
+    tableView.register(C.self, forCellReuseIdentifier: String(describing: C.self))
   }
   
   private func setupSearchController() {

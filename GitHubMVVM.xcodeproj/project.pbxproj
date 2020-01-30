@@ -18,9 +18,12 @@
 		244C0E1123D709BE00C6BF73 /* ResultViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244C0E1023D709BE00C6BF73 /* ResultViewModelProtocol.swift */; };
 		244C0E1723D7220D00C6BF73 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244C0E1623D7220D00C6BF73 /* NetworkManager.swift */; };
 		244C3B6D23E1A12F00AD1993 /* GitHubMVVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244C3B6C23E1A12F00AD1993 /* GitHubMVVMTests.swift */; };
+		244C3B7623E2F46200AD1993 /* ManagedObjectProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244C3B7523E2F46200AD1993 /* ManagedObjectProtocol.swift */; };
+		244C3B7923E2F80300AD1993 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244C3B7823E2F80300AD1993 /* File.swift */; };
 		2456DBD923DAED9A005E74DC /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 2456DBD823DAED9A005E74DC /* .swiftlint.yml */; };
 		2456DBDD23E0475A005E74DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2456DBDC23E0475A005E74DC /* Main.storyboard */; };
 		24933D9723D85F76007E7597 /* Search.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24933D9523D85F76007E7597 /* Search.xcdatamodeld */; };
+		24AE245623E3170200B1AC1C /* GitHubModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AE245523E3170200B1AC1C /* GitHubModel.swift */; };
 		CDB78FEDA5E819B53A4203DB /* Pods_GitHubMVVM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01B83D9D099769C3E8BE0673 /* Pods_GitHubMVVM.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,9 +54,12 @@
 		244C3B6A23E1A12F00AD1993 /* GitHubMVVMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GitHubMVVMTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		244C3B6C23E1A12F00AD1993 /* GitHubMVVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubMVVMTests.swift; sourceTree = "<group>"; };
 		244C3B6E23E1A12F00AD1993 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		244C3B7523E2F46200AD1993 /* ManagedObjectProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedObjectProtocol.swift; sourceTree = "<group>"; };
+		244C3B7823E2F80300AD1993 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		2456DBD823DAED9A005E74DC /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		2456DBDC23E0475A005E74DC /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		24933D9623D85F76007E7597 /* GitHubMVVM.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GitHubMVVM.xcdatamodel; sourceTree = "<group>"; };
+		24AE245523E3170200B1AC1C /* GitHubModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubModel.swift; sourceTree = "<group>"; };
 		79928EF0AC68BBD362704A18 /* Pods-GitHubMVVM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHubMVVM.debug.xcconfig"; path = "Target Support Files/Pods-GitHubMVVM/Pods-GitHubMVVM.debug.xcconfig"; sourceTree = "<group>"; };
 		9E6C0E5DE0FD593D42300200 /* Pods-GitHubMVVM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHubMVVM.release.xcconfig"; path = "Target Support Files/Pods-GitHubMVVM/Pods-GitHubMVVM.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -115,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				24933D9523D85F76007E7597 /* Search.xcdatamodeld */,
+				24AE245423E316D300B1AC1C /* GitHubRepo */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -132,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				244C0DF223D6D87300C6BF73 /* SearchViewController.swift */,
+				244C3B7823E2F80300AD1993 /* File.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -139,8 +147,8 @@
 		244C0E0D23D707A800C6BF73 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				244C0E0E23D707BD00C6BF73 /* SearchViewModelProtocol.swift */,
-				244C0E1023D709BE00C6BF73 /* ResultViewModelProtocol.swift */,
+				244C3B7723E2F51500AD1993 /* ViewModels */,
+				244C3B7523E2F46200AD1993 /* ManagedObjectProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -173,6 +181,23 @@
 				244C0DF923D6D87500C6BF73 /* LaunchScreen.storyboard */,
 			);
 			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		244C3B7723E2F51500AD1993 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				244C0E0E23D707BD00C6BF73 /* SearchViewModelProtocol.swift */,
+				244C0E1023D709BE00C6BF73 /* ResultViewModelProtocol.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		24AE245423E316D300B1AC1C /* GitHubRepo */ = {
+			isa = PBXGroup;
+			children = (
+				24AE245523E3170200B1AC1C /* GitHubModel.swift */,
+			);
+			path = GitHubRepo;
 			sourceTree = "<group>";
 		};
 		9044B1B9837D1F9A1081868F /* Pods */ = {
@@ -359,10 +384,13 @@
 				244C0E0F23D707BD00C6BF73 /* SearchViewModelProtocol.swift in Sources */,
 				244C0DF323D6D87300C6BF73 /* SearchViewController.swift in Sources */,
 				244C0DEF23D6D87300C6BF73 /* AppDelegate.swift in Sources */,
+				24AE245623E3170200B1AC1C /* GitHubModel.swift in Sources */,
 				24933D9723D85F76007E7597 /* Search.xcdatamodeld in Sources */,
+				244C3B7623E2F46200AD1993 /* ManagedObjectProtocol.swift in Sources */,
 				244C0E1123D709BE00C6BF73 /* ResultViewModelProtocol.swift in Sources */,
 				244C0DF123D6D87300C6BF73 /* SceneDelegate.swift in Sources */,
 				244C0E1723D7220D00C6BF73 /* NetworkManager.swift in Sources */,
+				244C3B7923E2F80300AD1993 /* File.swift in Sources */,
 				244C0E0C23D7078C00C6BF73 /* ResultViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -624,8 +652,7 @@
 				24933D9623D85F76007E7597 /* GitHubMVVM.xcdatamodel */,
 			);
 			currentVersion = 24933D9623D85F76007E7597 /* GitHubMVVM.xcdatamodel */;
-			name = Search.xcdatamodeld;
-			path = ../Search.xcdatamodeld;
+			path = Search.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

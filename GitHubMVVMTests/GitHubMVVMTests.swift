@@ -29,7 +29,12 @@ class GitHubMVVMTests: XCTestCase {
   }
   
   func testNumberOfRowsInSection() {
-    let done = sut.tableView(UITableView(), numberOfRowsInSection: 0)
+    let numberOfRowsInSection = sut.tableView(UITableView(), numberOfRowsInSection: 0)
+    XCTAssertEqual(numberOfRowsInSection, 0)
+  }
+  
+  func testCellForRowAtIndexPathReturnsCell() {
+    
   }
   
 }

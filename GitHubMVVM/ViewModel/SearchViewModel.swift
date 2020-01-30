@@ -11,11 +11,10 @@ import MagicalRecord
 
 class SearchViewModel<M>: NSObject, SearchViewModelProtocol {
     
-  private let networkManager = NetworkManager()
-  private var results = [CDResult]()
+  private var results = [M]()
     
   var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult> = {
-    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "\(M.self)")
+    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: String(describing: M.self))
     let sortDescriptor = NSSortDescriptor(key: "stars", ascending: false)
     fetchRequest.sortDescriptors = [sortDescriptor]
     fetchRequest.fetchLimit = 30
@@ -24,6 +23,7 @@ class SearchViewModel<M>: NSObject, SearchViewModelProtocol {
                                                               managedObjectContext: managedContext,
                                                               sectionNameKeyPath: nil,
                                                               cacheName: nil)
+    
     return fetchedResultsController
   }()
   
@@ -37,13 +37,16 @@ class SearchViewModel<M>: NSObject, SearchViewModelProtocol {
   }
   
   func cellViewModel(for indexPath: IndexPath) -> ResultViewModelProtocol? {
-    guard let result = fetchedResultsController.object(at: indexPath) as? CDResult else {
+    guard let result = fetchedResultsController.object(at: indexPath) as? M else {
       return nil
     }
-    return ResultViewModel(result: result)
+    return ResultViewModel(result: (result as? CDResult)!)
   }
   
   func fetch(_ query: String?, complition: @escaping () -> Void) {
+    
+    
+//    let vc = CDResult
     
     if let query = query {
       self.search(query: query) { [weak self] in
@@ -61,27 +64,17 @@ class SearchViewModel<M>: NSObject, SearchViewModelProtocol {
   
   // MARK: Private funcs
   private func search(query: String, complition: @escaping () -> Void) {
-    //refactor here
-    networkManager.search(query: query) { [weak self] data in
+    NetworkManager.shared.search(query: query) {  [weak self] data in
       guard let data = data,
-        let json = try?
-          JSONSerialization.jsonObject(with: data,
-                                       options: .fragmentsAllowed) as? [String: Any],
-        let allResults = json["items"] as? [[String: Any]] else {
+        let importModel = (try? JSONDecoder().decode(GitHubModel.self, from: data))?.importModel else {
           return
       }
-
-      let results = allResults
-        .map {
-          ["name": $0["name"] as? String ?? "",
-           "stars": String($0["stargazers_count"] as? Int ?? 0) ]
-      }
-
-      self?.importToStore(results, complition: {
+            
+      self?.importToStore(importModel, complition: {
         complition()
       })
+      
     }
-    
   }
   
   private func importToStore(_ arrayOfDicts: [[AnyHashable: Any]],

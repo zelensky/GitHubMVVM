@@ -8,34 +8,32 @@
 
 import UIKit
 
-class NetworkManager: NSObject {
+class NetworkManager {
   
+  static var shared: NetworkManager {
+    let shared = NetworkManager()
+    return shared
+  }
+  
+  private var session: URLSession!
   private let searchURL = "https://api.github.com/search/repositories?q=%@&sort=stars"
   private let httpMethod = "GET"
-  private var session: URLSession
   
-  override init () {
-    self.session = URLSession(configuration: URLSessionConfiguration.default)
-    super.init()
+  private init() {
+    session = URLSession(configuration: URLSessionConfiguration.default)
   }
   
-  private func buildRequest(query: String) -> URLRequest? {
+  func search(query: String, complition: @escaping (Data?) -> Void) {
     guard let url = URL(string: String(format: searchURL, query)) else {
-      return nil
-    }
-    var request = URLRequest(url: url)
-    request.httpMethod = httpMethod
-    return request
-  }
-  
-  public func search(query: String, complition: @escaping (Data?) -> Void) {
-    guard let request = buildRequest(query: query) else {
       return
     }
+    
+    let request = URLRequest(url: url)
     
     session.dataTask(with: request) { (data, _, _) in
       complition(data)
     }.resume()
+    
   }
   
 }
