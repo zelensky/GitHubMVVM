@@ -9,10 +9,19 @@
 import UIKit
 import CoreData
 
-class SearchViewController<C: UITableViewCell, M: NSManagedObject>: UITableViewController, UISearchBarDelegate {
+class SearchViewController<C: UITableViewCell, M: NSManagedObject>: UITableViewController, UISearchBarDelegate where M: HasTitleLabelText {
   
-  private var viewModel = SearchViewModel<M>()
+  private var viewModel: SearchViewModel<M>!
   private var searchController: UISearchController!
+  
+  init(sortDescriptor: NSSortDescriptor) {
+    self.viewModel = SearchViewModel(sortDescriptor: sortDescriptor)
+    super.init(nibName: nil, bundle: nil)
+  }
+  
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -36,7 +45,7 @@ class SearchViewController<C: UITableViewCell, M: NSManagedObject>: UITableViewC
         return UITableViewCell()
     }
     
-    cell.textLabel?.text = cellViewModel.title()
+    cell.textLabel?.text = cellViewModel.titleLabelText
     return cell
   }
   

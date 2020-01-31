@@ -10,6 +10,8 @@ import Foundation
 import CoreData
 
 protocol SearchViewModelProtocol: class {
+
+  init(sortDescriptor: NSSortDescriptor)
   
   func numberOfSectins() -> Int
   func numberOfRows(in sectin: Int) -> Int

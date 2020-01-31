@@ -7,21 +7,18 @@
 //
 
 import Foundation
+import CoreData
 
-struct ResultViewModel: ResultViewModelProtocol {
+struct ResultViewModel<T: HasTitleLabelText>: ResultViewModelProtocol {
   
-  private let result: CDResult
+  var result: T
   
-  init(result: CDResult) {
-    self.result = result
+  var titleLabelText: String? {
+    return result.titleLabelText
   }
 
-  func title() -> String? {
-    guard let name = result.name else {
-        return nil
-    }
-    
-    return "\(name) has \(result.stars) ⭐️"
+  init(result: T) {
+    self.result = result
   }
   
 }

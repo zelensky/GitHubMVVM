@@ -7,7 +7,10 @@
 //
 
 import Foundation
+import CoreData
 
 protocol ResultViewModelProtocol {
-  func title() -> String?
+  
+  var titleLabelText: String? { get }
+      
 }

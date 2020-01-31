@@ -16,7 +16,7 @@ class GitHubMVVMTests: XCTestCase {
   
   override func setUp() {
     super.setUp()
-    sut = SearchViewController<UITableViewCell, CDResult>()
+//    sut = SearchViewController<UITableViewCell, CDResult>()
   }
   
   override func tearDown() {

@@ -9,54 +9,55 @@
 import Foundation
 import MagicalRecord
 
-class SearchViewModel<M>: NSObject, SearchViewModelProtocol {
-    
+class SearchViewModel<M: NSManagedObject>: NSObject, SearchViewModelProtocol where M: HasTitleLabelText {
+  
+  private var descriptor: NSSortDescriptor
   private var results = [M]()
+  private var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>?
+  
+  required init(sortDescriptor: NSSortDescriptor) {
+    //setup descriptor
+    self.descriptor = sortDescriptor
     
-  var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult> = {
+    //setup NSFetchedResultsController
     let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: String(describing: M.self))
-    let sortDescriptor = NSSortDescriptor(key: "stars", ascending: false)
-    fetchRequest.sortDescriptors = [sortDescriptor]
+    fetchRequest.sortDescriptors = [descriptor]
     fetchRequest.fetchLimit = 30
     let managedContext = NSManagedObjectContext.mr_default()
-    let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest,
-                                                              managedObjectContext: managedContext,
-                                                              sectionNameKeyPath: nil,
-                                                              cacheName: nil)
-    
-    return fetchedResultsController
-  }()
-  
+    fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest,
+                                                          managedObjectContext: managedContext,
+                                                          sectionNameKeyPath: nil,
+                                                          cacheName: nil)
+  }
+
   // MARK: Protocol
   func numberOfSectins() -> Int {
-    return fetchedResultsController.sections?.count ?? 0
+    return fetchedResultsController?.sections?.count ?? 0
   }
   
   func numberOfRows(in sectin: Int) -> Int {
-    return fetchedResultsController.sections?[sectin].numberOfObjects ?? 0
+    return fetchedResultsController?.sections?[sectin].numberOfObjects ?? 0
   }
   
   func cellViewModel(for indexPath: IndexPath) -> ResultViewModelProtocol? {
-    guard let result = fetchedResultsController.object(at: indexPath) as? M else {
+    guard let result = fetchedResultsController?.object(at: indexPath) as? M else {
       return nil
     }
-    return ResultViewModel(result: (result as? CDResult)!)
+    
+    return ResultViewModel(result: result)
   }
   
   func fetch(_ query: String?, complition: @escaping () -> Void) {
-    
-    
-//    let vc = CDResult
     
     if let query = query {
       self.search(query: query) { [weak self] in
 
         //refactor here
-        try? self?.fetchedResultsController.performFetch()
+        try? self?.fetchedResultsController?.performFetch()
         complition()
       }
     } else {
-      try? fetchedResultsController.performFetch()
+      try? fetchedResultsController?.performFetch()
       complition()
     }
     
@@ -80,7 +81,7 @@ class SearchViewModel<M>: NSObject, SearchViewModelProtocol {
   private func importToStore(_ arrayOfDicts: [[AnyHashable: Any]],
                              complition: @escaping () -> Void) {
     MagicalRecord.save({ managedContext in
-      CDResult.mr_import(from: arrayOfDicts, in: managedContext)
+      M.mr_import(from: arrayOfDicts, in: managedContext)
     }) { (success, _) in
       guard success else {
         return
