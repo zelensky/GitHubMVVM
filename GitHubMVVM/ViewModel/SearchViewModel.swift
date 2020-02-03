@@ -6,31 +6,37 @@
 //  Copyright © 2020 3. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import MagicalRecord
 
-class SearchViewModel<M: NSManagedObject>: NSObject, SearchViewModelProtocol where M: HasTitleLabelText {
+class SearchViewModel<M: NSManagedObject>: NSObject, NSFetchedResultsControllerDelegate, SearchViewModelProtocol where M: HasTitleLabelText {
   
   private var descriptor: NSSortDescriptor
   private var results = [M]()
   private var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>?
   
+  var tableViewAction: ((TableViewAction) -> Void)?
+  
   required init(sortDescriptor: NSSortDescriptor) {
     //setup descriptor
     self.descriptor = sortDescriptor
     
+    super.init()
     //setup NSFetchedResultsController
+    let managedContext = NSManagedObjectContext.mr_default()
     let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: String(describing: M.self))
     fetchRequest.sortDescriptors = [descriptor]
     fetchRequest.fetchLimit = 30
-    let managedContext = NSManagedObjectContext.mr_default()
+    
     fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest,
                                                           managedObjectContext: managedContext,
                                                           sectionNameKeyPath: nil,
                                                           cacheName: nil)
+    fetchedResultsController?.delegate = self
+    try? fetchedResultsController?.performFetch()
   }
 
-  // MARK: Protocol
+  // MARK: ViewModel Protocol
   func numberOfSectins() -> Int {
     return fetchedResultsController?.sections?.count ?? 0
   }
@@ -47,49 +53,64 @@ class SearchViewModel<M: NSManagedObject>: NSObject, SearchViewModelProtocol whe
     return ResultViewModel(result: result)
   }
   
-  func fetch(_ query: String?, complition: @escaping () -> Void) {
-    
-    if let query = query {
-      self.search(query: query) { [weak self] in
-
-        //refactor here
-        try? self?.fetchedResultsController?.performFetch()
-        complition()
-      }
-    } else {
-      try? fetchedResultsController?.performFetch()
-      complition()
+  func fetch(_ query: String?) {
+    guard let query = query else {
+      return
     }
     
+    search(query: query) { [weak self] importModel in
+      self?.importToStore(importModel)
+    }
+  }
+  
+  // MARK: FetchedResultsControllerDelegate
+  func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+    tableViewAction?(.beginUpdates)
+  }
+  
+  func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+    tableViewAction?(.endUpdates)
+  }
+  
+  func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+                  didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType,
+                  newIndexPath: IndexPath?) {
+    
+    switch type {
+    case .delete:
+      guard let indexPath = indexPath else { return }
+      tableViewAction?(.delete([indexPath]))
+    case .insert:
+      guard let indexPath = newIndexPath else { return }
+      tableViewAction?(.insert([indexPath]))
+    case .move:
+      if let indexPath = indexPath {
+        tableViewAction?(.delete([indexPath]))
+      }
+      if let newIndexPath = newIndexPath {
+        tableViewAction?(.insert([newIndexPath]))
+      }
+    @unknown default:
+      break
+    }
   }
   
   // MARK: Private funcs
-  private func search(query: String, complition: @escaping () -> Void) {
-    NetworkManager.shared.search(query: query) {  [weak self] data in
+  private func search(query: String, complition: @escaping ([[String: String]]) -> Void) {
+    NetworkManager.shared.search(query: query) { data in
       guard let data = data,
         let importModel = (try? JSONDecoder().decode(GitHubModel.self, from: data))?.importModel else {
           return
       }
-            
-      self?.importToStore(importModel, complition: {
-        complition()
-      })
       
+      complition(importModel)
     }
   }
   
-  private func importToStore(_ arrayOfDicts: [[AnyHashable: Any]],
-                             complition: @escaping () -> Void) {
+  private func importToStore(_ arrayOfDicts: [[AnyHashable: Any]]) {
     MagicalRecord.save({ managedContext in
       M.mr_import(from: arrayOfDicts, in: managedContext)
-    }) { (success, _) in
-      guard success else {
-        return
-      }
-      
-      complition()
-    }
-    
+    })
   }
   
 }
