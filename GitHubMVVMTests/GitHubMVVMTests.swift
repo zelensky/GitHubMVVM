@@ -12,7 +12,7 @@ import CoreData
 
 class GitHubMVVMTests: XCTestCase {
   
-  var sut: SearchViewController<UITableViewCell, CDResult>!
+  var sut: ListViewController<UITableViewCell, CDResult>!
   
   override func setUp() {
     super.setUp()

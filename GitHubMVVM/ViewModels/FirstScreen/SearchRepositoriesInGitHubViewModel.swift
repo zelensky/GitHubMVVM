@@ -1,5 +1,5 @@
 //
-//  SearchViewModel.swift
+//  SearchRepositoriesInGitHubViewModel.swift
 //  GitHubMVVM
 //
 //  Created by Dmytro Zelenskyi on 21.01.2020.
@@ -9,18 +9,16 @@
 import UIKit
 import MagicalRecord
 
-class SearchViewModel<M: NSManagedObject>: NSObject, NSFetchedResultsControllerDelegate, SearchViewModelProtocol where M: HasTitleLabelText {
+class SearchRepositoriesInGitHubViewModel<M: NSManagedObject>: NSObject, NSFetchedResultsControllerDelegate, ListViewModelProtocol where M: HasTitleLabelText {
   
-  private var descriptor: NSSortDescriptor
-  private var results = [M]()
+  var results = [M]()
+
+  private var descriptor = NSSortDescriptor(key: "stars", ascending: false)
   private var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>?
   
   var tableViewAction: ((TableViewAction) -> Void)?
   
-  required init(sortDescriptor: NSSortDescriptor) {
-    //setup descriptor
-    self.descriptor = sortDescriptor
-    
+  required override init() {
     super.init()
     //setup NSFetchedResultsController
     let managedContext = NSManagedObjectContext.mr_default()
@@ -45,12 +43,13 @@ class SearchViewModel<M: NSManagedObject>: NSObject, NSFetchedResultsControllerD
     return fetchedResultsController?.sections?[sectin].numberOfObjects ?? 0
   }
   
-  func cellViewModel(for indexPath: IndexPath) -> ResultViewModelProtocol? {
+  func cellViewModel(for indexPath: IndexPath) -> ListItemViewModelProtocol? {
+    
     guard let result = fetchedResultsController?.object(at: indexPath) as? M else {
       return nil
     }
     
-    return ResultViewModel(result: result)
+    return RepositoryViewModel(result: result)
   }
   
   func fetch(_ query: String?) {
@@ -90,6 +89,8 @@ class SearchViewModel<M: NSManagedObject>: NSObject, NSFetchedResultsControllerD
       if let newIndexPath = newIndexPath {
         tableViewAction?(.insert([newIndexPath]))
       }
+    case .update:
+      break
     @unknown default:
       break
     }

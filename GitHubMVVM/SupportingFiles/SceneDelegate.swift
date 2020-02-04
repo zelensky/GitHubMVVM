@@ -15,9 +15,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
     if let windowScene = scene as? UIWindowScene {
       let searchWindow = UIWindow(windowScene: windowScene)
-      let descriptor = NSSortDescriptor(key: "stars", ascending: false)
-      let searchVC = SearchViewController<UITableViewCell, CDResult>(sortDescriptor: descriptor)
-      let navigationVC = UINavigationController(rootViewController: searchVC)
+      let viewModel = SearchRepositoriesInGitHubViewModel<Repository>()
+      let listVC = ListViewController<UITableViewCell>(viewModel: viewModel)
+      let navigationVC = UINavigationController(rootViewController: listVC)
       searchWindow.rootViewController = navigationVC
       window = searchWindow
       searchWindow.makeKeyAndVisible()

@@ -9,16 +9,16 @@
 import Foundation
 import CoreData
 
-struct ResultViewModel<T: HasTitleLabelText>: ResultViewModelProtocol {
+struct RepositoryViewModel<T: HasTitleLabelText>: ListItemViewModelProtocol {
   
-  var result: T
+  var repository: T
   
   var titleLabelText: String? {
-    return result.titleLabelText
+    return repository.titleLabelText
   }
 
   init(result: T) {
-    self.result = result
+    self.repository = result
   }
   
 }

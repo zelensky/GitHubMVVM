@@ -1,5 +1,5 @@
 //
-//  ResultViewModelProtocol.swift
+//  ListItemViewModelProtocol.swift
 //  GitHubMVVM
 //
 //  Created by Dmytro Zelenskyi on 21.01.2020.
@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-protocol ResultViewModelProtocol {
+protocol ListItemViewModelProtocol {
   
   var titleLabelText: String? { get }
       

@@ -1,5 +1,5 @@
 //
-//  CDResultExtension.swift
+//  Repository.swift
 //  GitHubMVVM
 //
 //  Created by Dmytro Zelenskyi on 31.01.2020.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension CDResult: HasTitleLabelText {
+extension Repository: HasTitleLabelText {
   
   var titleLabelText: String? {
     switch (self.name, self.stars) {

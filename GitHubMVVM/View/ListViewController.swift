@@ -9,20 +9,13 @@
 import UIKit
 import CoreData
 
-enum TableViewAction {
-  case beginUpdates
-  case endUpdates
-  case delete([IndexPath])
-  case insert([IndexPath])
-}
-
-class SearchViewController<C: UITableViewCell, M: NSManagedObject>: UITableViewController, UISearchBarDelegate where M: HasTitleLabelText {
+class ListViewController<C: UITableViewCell>: UITableViewController, UISearchBarDelegate  {
     
-  private var viewModel: SearchViewModel<M>!
+  private var viewModel: ListViewModelProtocol!
   private var searchController: UISearchController!
 
-  init(sortDescriptor: NSSortDescriptor) {
-    self.viewModel = SearchViewModel(sortDescriptor: sortDescriptor)
+  init(viewModel: ListViewModelProtocol) {
+    self.viewModel = viewModel
     super.init(nibName: nil, bundle: nil)
   }
   
@@ -34,11 +27,15 @@ class SearchViewController<C: UITableViewCell, M: NSManagedObject>: UITableViewC
     super.viewDidLoad()
     
     setupTableView()
-    setupSearchController()
+    
+    if viewModel.searchBarIsActive {
+      setupSearchController()
+    }
+    
     viewModel.tableViewAction = updateTableView
   }
   
-  // MARK: - DataSourse
+  // MARK: - UITableViewDataSourse
   override func numberOfSections(in tableView: UITableView) -> Int {
     viewModel.numberOfSectins()
   }
@@ -55,6 +52,14 @@ class SearchViewController<C: UITableViewCell, M: NSManagedObject>: UITableViewC
     
     cell.textLabel?.text = cellViewModel.titleLabelText
     return cell
+  }
+  
+  // MARK: - UITableViewDelegate
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    
+    let viewModel = RepositoriesOfOneOwner<Repository>()
+    let ownersRepositoriesViewController = ListViewController(viewModel: viewModel)
+    navigationController?.pushViewController(ownersRepositoriesViewController, animated: true)
   }
     
   // MARK: - Private funcs
