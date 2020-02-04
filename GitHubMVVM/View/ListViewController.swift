@@ -33,6 +33,20 @@ class ListViewController<C: UITableViewCell>: UITableViewController, UISearchBar
     }
     
     viewModel.tableViewAction = updateTableView
+    viewModel.view = self
+  }
+  
+  func updateTableView(action: TableViewAction) {
+    switch action {
+    case .beginUpdates:
+      tableView.beginUpdates()
+    case .endUpdates:
+      tableView.endUpdates()
+    case .delete(let indexPaths):
+      tableView.deleteRows(at: indexPaths, with: .automatic)
+    case .insert(let indexPaths):
+      tableView.insertRows(at: indexPaths, with: .automatic)
+    }
   }
   
   // MARK: - UITableViewDataSourse
@@ -56,10 +70,7 @@ class ListViewController<C: UITableViewCell>: UITableViewController, UISearchBar
   
   // MARK: - UITableViewDelegate
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    
-    let viewModel = RepositoriesOfOneOwner<Repository>()
-    let ownersRepositoriesViewController = ListViewController(viewModel: viewModel)
-    navigationController?.pushViewController(ownersRepositoriesViewController, animated: true)
+    viewModel.didSelectRowAt(indexPath: indexPath)
   }
     
   // MARK: - Private funcs
@@ -78,19 +89,6 @@ class ListViewController<C: UITableViewCell>: UITableViewController, UISearchBar
   
   private func updateWith(_ query: String? = nil) {
     viewModel.fetch(query)
-  }
-  
-  func updateTableView(action: TableViewAction) {
-    switch action {
-    case .beginUpdates:
-      tableView.beginUpdates()
-    case .endUpdates:
-      tableView.endUpdates()
-    case .delete(let indexPaths):
-      tableView.deleteRows(at: indexPaths, with: .automatic)
-    case .insert(let indexPaths):
-      tableView.insertRows(at: indexPaths, with: .automatic)
-    }
   }
   
   // MARK: - SearchBarDelegate

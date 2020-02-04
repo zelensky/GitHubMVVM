@@ -11,11 +11,11 @@ import Foundation
 extension Repository: HasTitleLabelText {
   
   var titleLabelText: String? {
-    switch (self.name, self.stars) {
-    case (.some(let name), 0):
-      return "\(name) has no ✸"
-    case (.some(let name), let stars) where stars >= 0:
-      return "\(name) has \(self.stars) ✸"
+    switch (self.name, self.owner, self.stars) {
+    case (.some(let name), .some(let owner), 0):
+      return "\(name) by \(owner)  has no ✸"
+    case (.some(let name), .some(let owner), let stars) where stars >= 0:
+      return "\(name) by \(owner) has \(self.stars) ✸"
     default:
       return nil
     }

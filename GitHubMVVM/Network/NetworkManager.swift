@@ -17,6 +17,7 @@ class NetworkManager {
   
   private var session: URLSession!
   private let searchURL = "https://api.github.com/search/repositories?q=%@&sort=stars"
+  private let reposOfOwnerURL = "https://api.github.com/users/%@/repos"
   private let httpMethod = "GET"
   
   private init() {
@@ -30,6 +31,18 @@ class NetworkManager {
     
     let request = URLRequest(url: url)
     
+    session.dataTask(with: request) { (data, _, _) in
+      complition(data)
+    }.resume()
+    
+  }
+  
+  func getAllRepos(owner: String, complition: @escaping (Data?) -> Void) {
+    guard let url = URL(string: String(format: reposOfOwnerURL, owner)) else {
+      return
+    }
+    
+    let request = URLRequest(url: url)
     session.dataTask(with: request) { (data, _, _) in
       complition(data)
     }.resume()

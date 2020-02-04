@@ -15,7 +15,8 @@ struct GitHubModel: Codable {
     return items
       .map {
         ["name": $0.name,
-         "stars": String(describing: $0.stars)]
+         "stars": String(describing: $0.stars),
+         "owner": $0.owner]
     }
   }
   
@@ -34,15 +35,22 @@ struct GitHubRepository: Codable {
   
   let name: String
   let stars: Int
+  let owner: String
   
   enum CodingKeys: String, CodingKey {
-    case name, stars = "stargazers_count"
+    case name, stars = "stargazers_count", owner
+  }
+  
+  enum OwnerCodingKeys: String, CodingKey {
+    case login
   }
     
   init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.name = try container.decode(String.self, forKey: .name)
     self.stars = try container.decode(Int.self, forKey: .stars)
+    let ownerContainer = try container.nestedContainer(keyedBy: OwnerCodingKeys.self, forKey: .owner)
+    self.owner = try ownerContainer.decode(String.self, forKey: .login)
   }
   
 }

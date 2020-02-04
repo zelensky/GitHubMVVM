@@ -11,6 +11,8 @@ import MagicalRecord
 
 class SearchRepositoriesInGitHubViewModel<M: NSManagedObject>: NSObject, NSFetchedResultsControllerDelegate, ListViewModelProtocol where M: HasTitleLabelText {
   
+  var view: UIViewController?
+
   var results = [M]()
 
   private var descriptor = NSSortDescriptor(key: "stars", ascending: false)
@@ -52,6 +54,17 @@ class SearchRepositoriesInGitHubViewModel<M: NSManagedObject>: NSObject, NSFetch
     return RepositoryViewModel(result: result)
   }
   
+  func didSelectRowAt(indexPath: IndexPath) {
+    guard let result = fetchedResultsController?.object(at: indexPath) as? Repository,
+      let owner = result.owner else {
+        return
+    }
+    
+    let viewModel = RepositoriesOfOneOwner<Repository>(owner)
+    let ownersRepositoriesViewController = ListViewController(viewModel: viewModel)
+    view?.navigationController?.pushViewController(ownersRepositoriesViewController, animated: true)
+  }
+
   func fetch(_ query: String?) {
     guard let query = query else {
       return
