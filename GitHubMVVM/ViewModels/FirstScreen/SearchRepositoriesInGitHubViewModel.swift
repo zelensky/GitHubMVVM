@@ -11,14 +11,15 @@ import MagicalRecord
 
 class SearchRepositoriesInGitHubViewModel<M: NSManagedObject>: NSObject, NSFetchedResultsControllerDelegate, ListViewModelProtocol where M: HasTitleLabelText {
     
+  // MARK: ViewModel Protocol
   var view: UIViewController?
-
-  var results = [M]()
-
+  var searchBarIsActive = true
+  var tableViewAction: ((TableViewAction) -> Void)?
+  
+  // MARK: Private
+  private var results = [M]()
   private var descriptor = NSSortDescriptor(key: "stars", ascending: false)
   private var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>?
-  
-  var tableViewAction: ((TableViewAction) -> Void)?
   
   required override init() {
     super.init()
@@ -46,7 +47,6 @@ class SearchRepositoriesInGitHubViewModel<M: NSManagedObject>: NSObject, NSFetch
   }
   
   func cellViewModel(for indexPath: IndexPath) -> ListItemViewModelProtocol? {
-    
     guard let result = fetchedResultsController?.object(at: indexPath) as? M else {
       return nil
     }
@@ -60,8 +60,13 @@ class SearchRepositoriesInGitHubViewModel<M: NSManagedObject>: NSObject, NSFetch
         return
     }
     
-    let viewModel = RepositoriesOfOneOwner<Repository>(owner)
     let ownersRepositoriesViewController = ListViewController()
+    let viewModel = RepositoriesOfOneOwner<Repository>(owner)
+    
+    viewModel.view = ownersRepositoriesViewController
+    viewModel.tableViewAction = ownersRepositoriesViewController.updateTableView
+    ownersRepositoriesViewController.viewModel = viewModel
+
     view?.navigationController?.pushViewController(ownersRepositoriesViewController, animated: true)
   }
 

@@ -11,16 +11,14 @@ import CoreData
 
 protocol ListViewModelProtocol {
   
-  var tableViewAction: ((TableViewAction) -> Void)? { get set }
-  
-  var view: UIViewController? { get set }
+  var view: UIViewController? { get }
   var searchBarIsActive: Bool { get }
+  var tableViewAction: ((TableViewAction) -> Void)? { get }
   
   func numberOfSectins() -> Int
   func numberOfRows(in sectin: Int) -> Int
   func cellViewModel(for indexPath: IndexPath) -> ListItemViewModelProtocol?
   func didSelectRowAt(indexPath: IndexPath)
-  
   func fetch(_ query: String?)
 
 }
@@ -28,7 +26,7 @@ protocol ListViewModelProtocol {
 extension ListViewModelProtocol {
   
   var searchBarIsActive: Bool {
-    return true
+    return false
   }
   
 }
