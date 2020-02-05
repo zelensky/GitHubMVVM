@@ -15,8 +15,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
     if let windowScene = scene as? UIWindowScene {
       let searchWindow = UIWindow(windowScene: windowScene)
+      let listVC = ListViewController<UITableViewCell>()
       let viewModel = SearchRepositoriesInGitHubViewModel<Repository>()
-      let listVC = ListViewController<UITableViewCell>(viewModel: viewModel)
+      viewModel.view = listVC
+      viewModel.tableViewAction = listVC.updateTableView
+      listVC.viewModel = viewModel
       let navigationVC = UINavigationController(rootViewController: listVC)
       searchWindow.rootViewController = navigationVC
       window = searchWindow

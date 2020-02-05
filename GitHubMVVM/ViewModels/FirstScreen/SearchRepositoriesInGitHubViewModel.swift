@@ -10,7 +10,7 @@ import UIKit
 import MagicalRecord
 
 class SearchRepositoriesInGitHubViewModel<M: NSManagedObject>: NSObject, NSFetchedResultsControllerDelegate, ListViewModelProtocol where M: HasTitleLabelText {
-  
+    
   var view: UIViewController?
 
   var results = [M]()
@@ -61,7 +61,7 @@ class SearchRepositoriesInGitHubViewModel<M: NSManagedObject>: NSObject, NSFetch
     }
     
     let viewModel = RepositoriesOfOneOwner<Repository>(owner)
-    let ownersRepositoriesViewController = ListViewController(viewModel: viewModel)
+    let ownersRepositoriesViewController = ListViewController()
     view?.navigationController?.pushViewController(ownersRepositoriesViewController, animated: true)
   }
 

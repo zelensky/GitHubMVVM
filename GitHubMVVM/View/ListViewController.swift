@@ -9,20 +9,11 @@
 import UIKit
 import CoreData
 
-class ListViewController<C: UITableViewCell>: UITableViewController, UISearchBarDelegate  {
+class ListViewController<C: UITableViewCell>: UITableViewController, UISearchBarDelegate {
     
-  private var viewModel: ListViewModelProtocol!
+  var viewModel: ListViewModelProtocol!
   private var searchController: UISearchController!
 
-  init(viewModel: ListViewModelProtocol) {
-    self.viewModel = viewModel
-    super.init(nibName: nil, bundle: nil)
-  }
-  
-  required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -31,9 +22,6 @@ class ListViewController<C: UITableViewCell>: UITableViewController, UISearchBar
     if viewModel.searchBarIsActive {
       setupSearchController()
     }
-    
-    viewModel.tableViewAction = updateTableView
-    viewModel.view = self
   }
   
   func updateTableView(action: TableViewAction) {

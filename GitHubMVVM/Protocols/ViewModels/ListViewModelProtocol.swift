@@ -12,8 +12,8 @@ import CoreData
 protocol ListViewModelProtocol {
   
   var tableViewAction: ((TableViewAction) -> Void)? { get set }
-  var view: UIViewController? { get set }
   
+  var view: UIViewController? { get set }
   var searchBarIsActive: Bool { get }
   
   func numberOfSectins() -> Int
